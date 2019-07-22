@@ -18,14 +18,14 @@ apps:
         command: bin/start-x.sh
         daemon: simple
         restart-condition: always
-    zombies-watchdog:
-        command: bin/zombies-watchdog.sh
 
 parts:
     # Grabs X11 binaries
     x11:
         plugin: nil
         stage-packages:
+            - libwayland-client0
+            - libwayland-server0
             - xorg
             - xserver-xorg-video-fbdev
             - openbox
@@ -54,7 +54,55 @@ parts:
 
     # Library that adds $SNAP prefix to paths in calls to glibc
     snappypreload:
-        plugin: cmake
-        source: src
-        build-packages:
-            - build-essential
+      plugin: cmake
+      source: src
+      build-packages:
+        - build-essential
+
+    nvidia-l4t-3d-core:
+      plugin: dump
+      source: nvidia/nvidia-l4t-3d-core_32.2.0-20190716172031_arm64.deb
+      override-build: |
+        rm etc/vulkan/icd.d/nvidia_icd.json
+        ln -s ../../../usr/lib/aarch64-linux-gnu/tegra/nvidia_icd.json \
+            etc/vulkan/icd.d/nvidia_icd.json
+        snapcraftctl build
+    nvidia-l4t-core:
+      plugin: dump
+      source: nvidia/nvidia-l4t-core_32.2.0-20190716172031_arm64.deb
+    nvidia-l4t-ccp-t210ref:
+      plugin: dump
+      source: nvidia/nvidia-l4t-ccp-t210ref_32.2.0-20190716172031_arm64.deb
+    nvidia-l4t-init:
+      plugin: dump
+      source: nvidia/nvidia-l4t-init_32.2.0-20190716172031_arm64.deb
+      override-build: |
+        rm etc/systemd/system/nv-l4t-usb-device-mode-runtime.service
+        rm etc/systemd/system/nv-l4t-usb-device-mode.service
+        rm etc/systemd/system/multi-user.target.wants/nv-l4t-bootloader-config.service
+        rm etc/systemd/system/multi-user.target.wants/nv-l4t-usb-device-mode-runtime.service
+        rm etc/systemd/system/multi-user.target.wants/nv-l4t-usb-device-mode.service
+        ln -s ../../../opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode-runtime.service \
+            etc/systemd/system/nv-l4t-usb-device-mode-runtime.service
+        ln -s ../../../opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode.service \
+            etc/systemd/system/nv-l4t-usb-device-mode.service
+        ln -s ../../../../opt/nvidia/l4t-bootloader-config/nv-l4t-bootloader-config.service \
+            etc/systemd/system/multi-user.target.wants/nv-l4t-bootloader-config.service
+        ln -s ../../../../opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode-runtime.service \
+            etc/systemd/system/multi-user.target.wants/nv-l4t-usb-device-mode-runtime.service
+        ln -s ../../../../opt/nvidia/l4t-usb-device-mode/nv-l4t-usb-device-mode.service \
+            etc/systemd/system/multi-user.target.wants/nv-l4t-usb-device-mode.service
+        snapcraftctl build
+    nvidia-l4t-firmware:
+      plugin: dump
+      source: nvidia/nvidia-l4t-firmware_32.2.0-20190716172031_arm64.deb
+    nvidia-l4t-x11:
+      plugin: dump
+      source: nvidia/nvidia-l4t-x11_32.2.0-20190716172031_arm64.deb
+    nvidia-l4t-wayland:
+      plugin: dump
+      source: nvidia/nvidia-l4t-wayland_32.2.0-20190716172031_arm64.deb
+
+    overlay:
+      plugin: dump
+      source: overlay
