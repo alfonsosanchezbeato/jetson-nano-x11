@@ -8,6 +8,8 @@ OPENBOX_CONFIG=$SNAP_USER_DATA/.config/openbox
 cp -rf --preserve=mode $SNAP/openbox/environment $OPENBOX_CONFIG
 cp -rf --preserve=mode $SNAP/openbox/autostart $OPENBOX_CONFIG
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SNAP/usr/lib/aarch64-linux-gnu/tegra
+
 # use preload trick
 export SNAPPY_PRELOAD=$SNAP
 export LD_PRELOAD="$SNAP/usr/lib/libsnappypreload.so"
