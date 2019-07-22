@@ -1,0 +1,11 @@
+# Along with X server this script is executed. 
+# Let's configure and start CortexPlayer here.
+set -e
+
+# Disable display power saving and screen saver
+#xset -dpms
+#xset s noblank
+#xset s off
+
+# Start application using display :0
+#DISPLAY=:0 $SNAP/bin/run-app.sh &

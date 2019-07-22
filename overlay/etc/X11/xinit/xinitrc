@@ -1,0 +1,4 @@
+# Start open box session
+exec openbox-session
+
+

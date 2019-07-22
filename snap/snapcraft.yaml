@@ -1,0 +1,60 @@
+name: jetson-nano-x11
+version: '0.1'
+summary: X11 for Jetson Nano
+description: X11 desktop for Jetson Nano
+confinement: devmode
+grade: devel
+base: core18
+architectures: [ arm64 ]
+
+apps:
+    xrandr:
+        command: bin/xrandr.sh
+        aliases: [ jetson-nano-x11_xrandr ]
+    xorg:
+        command: bin/xorg.sh
+        aliases: [ jetson-nano-x11_xorg ]
+    xserver:
+        command: bin/start-x.sh
+        daemon: simple
+        restart-condition: always
+    zombies-watchdog:
+        command: bin/zombies-watchdog.sh
+
+parts:
+    # Grabs X11 binaries
+    x11:
+        plugin: nil
+        stage-packages:
+            - xorg
+            - xserver-xorg-video-fbdev
+            - openbox
+        stage:
+            - -usr/bin/Xorg
+            - -etc/X11/Xsession.d/70im-config_launch
+            - -etc/X11/Xsession.d/75dbus_dbus-launch
+            - -etc/X11/xinit/xinitrc
+            - -usr/lib/gcc
+            - -usr/lib/man-db
+            - -usr/lib/tmpfiles.d
+            - -usr/lib/mime
+            - -usr/lib/groff
+            - -usr/include/xorg
+            - -usr/share/doc
+            - -usr/share/doc-base
+            - -usr/share/calendar
+            - -usr/share/applications
+            - -usr/share/man
+            - -usr/share/man-db
+            - -usr/share/menu
+            - -var
+            - -etc/cron.daily
+            - -etc/cron.weekly
+            - -etc/calendar
+
+    # Library that adds $SNAP prefix to paths in calls to glibc
+    snappypreload:
+        plugin: cmake
+        source: src
+        build-packages:
+            - build-essential
