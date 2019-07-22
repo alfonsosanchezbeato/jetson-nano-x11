@@ -1,4 +1,5 @@
-parts/
-stage/
-prime/
-jetson-nano-x11_*snap
+/parts/
+/stage/
+/prime/
+/snap/.snapcraft/
+/jetson-nano-x11_*snap
