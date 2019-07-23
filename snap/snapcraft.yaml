@@ -11,6 +11,9 @@ apps:
     xrandr:
         command: bin/xrandr.sh
         aliases: [ jetson-nano-x11_xrandr ]
+    xeyes:
+        command: bin/xwrapper.sh xeyes
+        aliases: [ jetson-nano-x11_xeyes ]
     xorg:
         command: bin/xorg.sh
         aliases: [ jetson-nano-x11_xorg ]
@@ -26,6 +29,7 @@ parts:
         stage-packages:
             - libwayland-client0
             - libwayland-server0
+            - x11-apps
             - xorg
             - xserver-xorg-video-fbdev
             - openbox
