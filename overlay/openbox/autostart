@@ -3,9 +3,9 @@
 set -e
 
 # Disable display power saving and screen saver
-#xset -dpms
-#xset s noblank
-#xset s off
+xset -dpms
+xset s noblank
+xset s off
 
 # Start application using display :0
-#DISPLAY=:0 $SNAP/bin/run-app.sh &
+DISPLAY=:0 $SNAP/bin/xwrapper.sh $SNAP/usr/bin/xeyes &
