@@ -122,6 +122,7 @@ redirect_writable_path (const char *pathname, const char *basepath)
 static char *
 redirect_path_full (const char *pathname, int check_parent, int only_if_absolute)
 {
+    static const char snap_path[] = "/snap";
     int (*_access) (const char *pathname, int mode);
     char *redirected_pathname;
     char *preload_dir;
@@ -132,6 +133,20 @@ redirect_path_full (const char *pathname, int check_parent, int only_if_absolute
     if (pathname == NULL) {
         return NULL;
     }
+
+    /* Workaround when X11 starts to look into /sys while using dirfp != AT_FDCWD.
+     * It uses openat in sort of a recursive way, opening first folders and then
+     * using openat on the dir fd. We make sure it gets what it needs when
+     * opening "/", after that all goes smoothly.
+     */
+    if (strcmp ("/", pathname) == 0)
+        return strdup (pathname);
+
+    /* Avoid having the /snap path more than once - problem when forking, maybe
+     * it could be considered a preload.c bug, but that needs some research.
+     */
+    if (strncmp (snap_path, pathname, sizeof snap_path - 1) == 0)
+        return strdup (pathname);
 
     preload_dir = saved_snappy_preload;
     if (preload_dir == NULL) {
