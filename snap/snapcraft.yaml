@@ -29,6 +29,8 @@ parts:
             - xorg
             - xserver-xorg-video-fbdev
             - openbox
+            - python
+            - python-xdg
         stage:
             - -usr/bin/Xorg
             - -etc/X11/Xsession.d/70im-config_launch
