@@ -22,6 +22,10 @@ apps:
         daemon: simple
         restart-condition: always
 
+layout:
+  /etc:
+    bind: $SNAP/etc
+
 parts:
     # Grabs X11 binaries
     x11:
