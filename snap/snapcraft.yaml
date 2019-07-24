@@ -19,8 +19,6 @@ apps:
         aliases: [ jetson-nano-x11_xorg ]
     xserver:
         command: bin/start-x.sh
-        daemon: simple
-        restart-condition: always
 
 layout:
   /etc:
