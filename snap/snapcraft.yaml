@@ -39,6 +39,7 @@ parts:
     x11:
         plugin: nil
         stage-packages:
+            - coreutils
             - libwayland-client0
             - libwayland-server0
             - x11-apps
@@ -47,6 +48,7 @@ parts:
             - openbox
             - python
             - python-xdg
+            - util-linux
         stage:
             - -usr/bin/Xorg
             - -etc/X11/Xsession.d/70im-config_launch
