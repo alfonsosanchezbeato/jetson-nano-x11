@@ -75,13 +75,6 @@ parts:
             snapcraftctl stage
             sed -i 's#/usr/lib/#$SNAP/usr/lib/#g' usr/bin/openbox-session usr/lib/*/openbox-autostart
 
-    # Library that adds $SNAP prefix to paths in calls to glibc
-    snappypreload:
-      plugin: cmake
-      source: src
-      build-packages:
-        - build-essential
-
     nvidia-l4t-3d-core:
       plugin: dump
       source: nvidia/nvidia-l4t-3d-core_32.2.0-20190716172031_arm64.deb
