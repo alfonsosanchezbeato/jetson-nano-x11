@@ -49,6 +49,7 @@ parts:
             - python
             - python-xdg
             - util-linux
+            - xterm
         stage:
             - -usr/bin/Xorg
             - -etc/X11/Xsession.d/70im-config_launch
