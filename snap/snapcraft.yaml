@@ -10,13 +10,10 @@ architectures: [ arm64 ]
 apps:
     xrandr:
         command: bin/xrandr.sh
-        aliases: [ jetson-nano-x11_xrandr ]
     xeyes:
         command: bin/xwrapper.sh xeyes
-        aliases: [ jetson-nano-x11_xeyes ]
     xorg:
         command: bin/xorg.sh
-        aliases: [ jetson-nano-x11_xorg ]
     xserver:
         command: bin/start-x.sh
 
