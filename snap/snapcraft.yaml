@@ -29,6 +29,10 @@ layout:
     bind: $SNAP/usr/share/X11
   /usr/share/fonts:
     bind: $SNAP/usr/share/fonts
+  /usr/share/themes:
+    bind: $SNAP/usr/share/themes
+  /usr/bin:
+    bind: $SNAP/usr/bin
 
 parts:
     # Grabs X11 binaries
