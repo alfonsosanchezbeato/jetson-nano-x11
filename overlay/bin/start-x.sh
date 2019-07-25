@@ -11,4 +11,6 @@ cp -rf --preserve=mode $SNAP/openbox/autostart $OPENBOX_CONFIG
 ARCH=$(uname --m)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SNAP/usr/lib/$ARCH-linux-gnu/tegra
 
-exec "$SNAP/usr/bin/startx" "--" "-nocursor" "$@"
+# A default client to run in X can be set before "--"
+# To remove cursor, use -nocursor as argument to X
+exec "$SNAP/usr/bin/startx" -- "$SNAP/usr/bin/X" "$@"
