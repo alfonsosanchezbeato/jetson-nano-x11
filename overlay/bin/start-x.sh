@@ -8,7 +8,7 @@ OPENBOX_CONFIG=$SNAP_USER_DATA/.config/openbox
 cp -rf --preserve=mode $SNAP/openbox/environment $OPENBOX_CONFIG
 cp -rf --preserve=mode $SNAP/openbox/autostart $OPENBOX_CONFIG
 
-ARCH=$(uname --m)
+ARCH=$(uname -m)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SNAP/usr/lib/$ARCH-linux-gnu/tegra
 
 # A default client to run in X can be set before "--"
