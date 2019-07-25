@@ -23,6 +23,12 @@ apps:
 layout:
   /etc:
     bind: $SNAP/etc
+  /usr/lib/xorg:
+    bind: $SNAP/usr/lib/xorg
+  /usr/share/X11:
+    bind: $SNAP/usr/share/X11
+  /usr/share/fonts:
+    bind: $SNAP/usr/share/fonts
 
 parts:
     # Grabs X11 binaries
