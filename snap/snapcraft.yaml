@@ -71,6 +71,9 @@ parts:
             - -etc/cron.daily
             - -etc/cron.weekly
             - -etc/calendar
+        override-stage: |
+            snapcraftctl stage
+            sed -i 's#/usr/lib/#$SNAP/usr/lib/#g' usr/bin/openbox-session usr/lib/*/openbox-autostart
 
     # Library that adds $SNAP prefix to paths in calls to glibc
     snappypreload:
