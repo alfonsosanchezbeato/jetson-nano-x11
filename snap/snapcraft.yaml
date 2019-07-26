@@ -32,6 +32,8 @@ apps:
 layout:
   /etc:
     bind: $SNAP/etc
+  /usr/lib/aarch64-linux-gnu/dri:
+    bind: $SNAP/usr/lib/aarch64-linux-gnu/dri
   /usr/lib/xorg:
     bind: $SNAP/usr/lib/xorg
   /usr/share/X11:
