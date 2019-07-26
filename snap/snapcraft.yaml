@@ -26,10 +26,6 @@ apps:
     marchingCubes:
         command: bin/xwrapper.sh marchingCubes
         plugs: [ x11-client, network, opengl ]
-    xorg:
-        command: bin/xorg.sh
-        slots: [ x11-server ]
-        plugs: [ network-bind, opengl, framebuffer ]
     xserver:
         command: bin/start-x.sh
         slots: [ x11-server ]
