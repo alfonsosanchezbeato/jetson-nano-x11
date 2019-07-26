@@ -132,6 +132,12 @@ parts:
     nvidia-l4t-wayland:
       plugin: dump
       source: nvidia/nvidia-l4t-wayland_32.2.0-20190716172031_arm64.deb
+    nvidia-l4t-cuda:
+      plugin: dump
+      source: nvidia/nvidia-l4t-cuda_32.2.0-20190716172031_arm64.deb
+      override-build: |
+        ln -s libcuda.so.1.1 usr/lib/aarch64-linux-gnu/tegra/libcuda.so.1
+        snapcraftctl build
 
     overlay:
       plugin: dump
