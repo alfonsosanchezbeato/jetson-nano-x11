@@ -20,6 +20,12 @@ apps:
     xeyes:
         command: bin/xwrapper.sh xeyes
         plugs: [ x11-client, network ]
+    particles:
+        command: bin/xwrapper.sh particles
+        plugs: [ x11-client, network, opengl ]
+    marchingCubes:
+        command: bin/xwrapper.sh marchingCubes
+        plugs: [ x11-client, network, opengl ]
     xorg:
         command: bin/xorg.sh
         slots: [ x11-server ]
@@ -143,3 +149,7 @@ parts:
     overlay:
       plugin: dump
       source: overlay
+
+    cuda-samples:
+      plugin: dump
+      source: cuda-samples
