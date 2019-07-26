@@ -30,6 +30,8 @@ layout:
     bind: $SNAP/usr/share/themes
   /usr/bin:
     bind: $SNAP/usr/bin
+  /var/log:
+    bind: $SNAP_DATA/var/log
 
 parts:
     # Grabs X11 binaries
