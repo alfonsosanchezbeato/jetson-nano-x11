@@ -53,6 +53,7 @@ parts:
         plugin: nil
         stage-packages:
             - coreutils
+            - freeglut3
             - libwayland-client0
             - libwayland-server0
             - x11-apps
