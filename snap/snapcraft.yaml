@@ -15,7 +15,7 @@ plugs:
 
 apps:
     xrandr:
-        command: bin/xrandr.sh
+        command: bin/xwrapper.sh xrandr
         plugs: [ x11-client, network ]
     xeyes:
         command: bin/xwrapper.sh xeyes
