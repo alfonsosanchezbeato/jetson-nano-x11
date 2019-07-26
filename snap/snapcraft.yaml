@@ -2,20 +2,32 @@ name: jetson-nano-x11
 version: '0.1'
 summary: X11 for Jetson Nano
 description: X11 desktop for Jetson Nano
-confinement: devmode
-grade: devel
+confinement: strict
+grade: stable
 base: core18
 architectures: [ arm64 ]
+
+slots:
+  x11-server: x11
+
+plugs:
+  x11-client: x11
 
 apps:
     xrandr:
         command: bin/xrandr.sh
+        plugs: [ x11-client, network ]
     xeyes:
         command: bin/xwrapper.sh xeyes
+        plugs: [ x11-client, network ]
     xorg:
         command: bin/xorg.sh
+        slots: [ x11-server ]
+        plugs: [ network-bind, opengl, framebuffer ]
     xserver:
         command: bin/start-x.sh
+        slots: [ x11-server ]
+        plugs: [ network-bind, opengl, framebuffer ]
 
 layout:
   /etc:
